@@ -1,7 +1,12 @@
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
-        Grafo grafo=new Grafo(10);
+        Grafo1 grafo=new Grafo1(10);
+
+
     }
 
 
