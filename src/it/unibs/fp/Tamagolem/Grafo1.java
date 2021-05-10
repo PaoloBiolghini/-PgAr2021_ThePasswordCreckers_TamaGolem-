@@ -1,3 +1,5 @@
+package it.unibs.fp.Tamagolem;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;

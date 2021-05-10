@@ -1,3 +1,5 @@
+package it.unibs.fp.Tamagolem;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,13 +20,15 @@ public class Player {
         this.numeroTamagolem =((n-1)*(n-2)/(2*this.NUMEROPIETRE));
         this.SCORTAPIETRE=((2* numeroTamagolem *NUMEROPIETRE)/n)*n;
 
-        listaTamagolem=new ArrayList<>();
-        listaPietre=new ArrayList<>();
+        creaTamagolem();
+        creaSetPietre();
 
+    }
+
+    private void creaTamagolem(){
+        listaTamagolem=new ArrayList<>();
         for(Elemento e:Grafo1.getListaElementi())
             listaElementi.add(e.getNome());
-
-
 
         for(int i = 0; i< numeroTamagolem; i++) {
             Tamagolem t=new Tamagolem(VITA);
@@ -32,8 +36,10 @@ public class Player {
         }
     }
 
+
     private void creaSetPietre()
     {
+        listaPietre=new ArrayList<>();
         Random rand=new Random();
         for(int i=0;i<SCORTAPIETRE;i++) {
             int pos=rand.nextInt(listaElementi.size());

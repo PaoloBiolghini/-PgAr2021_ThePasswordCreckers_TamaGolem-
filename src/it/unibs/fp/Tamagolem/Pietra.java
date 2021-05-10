@@ -1,6 +1,8 @@
+package it.unibs.fp.Tamagolem;
+
 public class Pietra {
-    String nomeElemento;
-    Elemento elemento;
+    private String nomeElemento;
+    private Elemento elemento;
 
     public Pietra(String _nomeElemento)
     {

@@ -1,3 +1,5 @@
+package it.unibs.fp.Tamagolem;
+
 import java.util.ArrayList;
 
 public class Tamagolem {
