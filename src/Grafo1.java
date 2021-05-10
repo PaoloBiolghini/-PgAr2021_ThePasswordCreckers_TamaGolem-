@@ -6,7 +6,7 @@ import java.util.Set;
 public class Grafo1 {
 
     private  String[] elementiTutti={"Zero","Uno","Due","Tre","Quattro","Cinque","Sei","Sette","Otto","Nove","Dieci"};
-    private ArrayList<Elemento> listaElementi;
+    private static ArrayList<Elemento> listaElementi;
     private int numeroElementi;
 
     public Grafo1(int _nelementi)
@@ -133,6 +133,9 @@ public class Grafo1 {
         System.out.println("creazione terminata");
     }
 
-
+static public ArrayList<Elemento> getListaElementi()
+{
+    return listaElementi;
+}
 
 }
