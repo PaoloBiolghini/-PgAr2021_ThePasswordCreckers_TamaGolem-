@@ -16,8 +16,11 @@ public class Grafo1 {
         listaElementi=new ArrayList<>();
 
         boolean check;
+        //creo ciclo che controlla che non si vada in casi particolari
+        //se così allora ricomincia
         do{
           try{
+              //creo lista elementi
               for(int i=0;i<numeroElementi;i++) {
                   Elemento e = new Elemento(elementiTutti[i]);
                   listaElementi.add(e);

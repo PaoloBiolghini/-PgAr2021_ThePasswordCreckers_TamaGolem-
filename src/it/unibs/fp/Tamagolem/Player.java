@@ -25,7 +25,6 @@ public class Player {
 
         creaTamagolem();
         creaSetPietre();
-
     }
 
     /**
@@ -94,8 +93,6 @@ public class Player {
         currentTamagolem.addPietre(pietraSelected);
 
         listaPietre.remove(pietraSelected);
-
-
     }
 
     public boolean newTama(){
