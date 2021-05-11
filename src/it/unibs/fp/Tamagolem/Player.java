@@ -9,8 +9,9 @@ public class Player {
     private ArrayList<Tamagolem> listaTamagolem;
     private ArrayList<Pietra> listaPietre;
     private ArrayList<String> listaElementi=new ArrayList<>();
+    private Tamagolem currentTamagolem;
     private int NUMEROPIETRE;
-    private int numeroTamagolem;
+    private int NUMEROTAMAGOLEM;
     private int SCORTAPIETRE;
     private int tamagolemSelected;
     private final int VITA=10;
@@ -19,26 +20,31 @@ public class Player {
     {
         this.NUMEROPIETRE=((n+1)/3)+1;
         tamagolemSelected=-1;
-        this.numeroTamagolem =((n-1)*(n-2)/(2*this.NUMEROPIETRE));
-        this.SCORTAPIETRE=((2* numeroTamagolem *NUMEROPIETRE)/n)*n;
+        this.NUMEROTAMAGOLEM =((n-1)*(n-2)/(2*this.NUMEROPIETRE));
+        this.SCORTAPIETRE=((2* NUMEROTAMAGOLEM *NUMEROPIETRE)/n)*n;
 
         creaTamagolem();
         creaSetPietre();
 
     }
 
+    /**
+     * inserisce nell'arraylist un insieme di tamagolem con n di vita
+     */
     private void creaTamagolem(){
         listaTamagolem=new ArrayList<>();
         for(Elemento e:Grafo1.getListaElementi())
             listaElementi.add(e.getNome());
 
-        for(int i = 0; i< numeroTamagolem; i++) {
+        for(int i = 0; i< NUMEROTAMAGOLEM; i++) {
             Tamagolem t=new Tamagolem(VITA);
             listaTamagolem.add(t);
         }
     }
 
-
+    /**
+     * crea il set di pietre del player
+     */
     private void creaSetPietre()
     {
         listaPietre=new ArrayList<>();
@@ -51,16 +57,14 @@ public class Player {
 
     }
 
-    public void createTamasetpietre(){
-        tamagolemSelected++;
-        for(int i=0;i<NUMEROPIETRE;i++)
-            addPietraToTama();
-    }
 
-
+    /**
+     * visualizza tutte le pietre presenti nel set di pietre e inserendo l' indice a fianco di queste il payer decide
+     * di inserire quella pietra all'interno del tamagolem corrente
+     */
     public void addPietraToTama() {
-        System.out.println("LISTA PIETRE");
-        System.out.println("Inserisci:");
+        System.out.println("----------LISTA PIETRE----------");
+        System.out.println("Indice           Nome:");
         ArrayList<Pietra> listaAttuali=new ArrayList<>();
         int i=1;
         //itero per ogni elemento della lista e controllo che ci sia almeno un elemento nel set disponibile
@@ -83,15 +87,39 @@ public class Player {
         int scelta=InputDati.leggiIntero("Pietra n:",1,listaAttuali.size());
         scelta--;
 
-        //trovo il currentama e gli aggiungo la pietra scelta dall'utente
-        Tamagolem currentTama=listaTamagolem.get(tamagolemSelected);
+        // aggiungo la pietra scelta dall'utente e la rimuovo dalla lista del player
+
         Pietra pietraSelected=listaAttuali.get(scelta);
 
-        currentTama.addPietre(pietraSelected);
+        currentTamagolem.addPietre(pietraSelected);
 
         listaPietre.remove(pietraSelected);
 
 
     }
+
+    public boolean newTama(){
+        //se il currentama!=null allora devo rimettere le pietre nel set del player
+        if(currentTamagolem!=null)
+            listaPietre.addAll(currentTamagolem.getListaPietre());
+
+        //incremento il contatore e controllo che siano presenti ancora tamagolem
+        tamagolemSelected++;
+        if(tamagolemSelected>=NUMEROTAMAGOLEM)
+            return false;
+
+        //se esistono allora deve creare il set di pietre
+        currentTamagolem=listaTamagolem.get(tamagolemSelected);
+        for(int i=0;i<NUMEROPIETRE;i++)
+            addPietraToTama();
+
+
+        return true;
+    }
+
+    public Tamagolem getCurrentTamagolem(){
+        return currentTamagolem;
+    }
+
 
 }

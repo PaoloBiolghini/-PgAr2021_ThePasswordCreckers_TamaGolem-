@@ -25,7 +25,8 @@ public class Elemento {
 
 
     /***
-     * funzione che dati n passaggi mancatnti ed in base alla somma attuale restituisce il valore massimo
+     * dati n passaggi mancatnti ed in base alla somma attuale restituisce il valore massimo
+     * esempio: se  sommaattuale=3 e mancanti=1 in questo inserimento il metodo restituisce 1
      * @param mancanti
      * @return
      */
@@ -116,5 +117,7 @@ public class Elemento {
     {
         return nome;
     }
+
+    
 
 }
