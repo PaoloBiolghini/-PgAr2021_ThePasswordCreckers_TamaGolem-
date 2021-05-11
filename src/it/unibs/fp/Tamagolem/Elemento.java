@@ -10,6 +10,9 @@ public class Elemento {
     private Map<String,Integer> grafo=new HashMap();
     private int sommaattuale;
     private int massimoVoti;
+    private final int MAX=4;
+    private final int MIN=-MAX;
+
     private String nome;
 
     public Elemento(String _nome)

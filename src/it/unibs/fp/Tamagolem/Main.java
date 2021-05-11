@@ -7,8 +7,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-			Grafo1 grafo=new Grafo1(10);
+			//Grafo1 grafo=new Grafo1(10);
 
+        Random rand=new Random();
+        int i=rand.nextInt(0);
+        System.out.println(i);
     }
 
 
