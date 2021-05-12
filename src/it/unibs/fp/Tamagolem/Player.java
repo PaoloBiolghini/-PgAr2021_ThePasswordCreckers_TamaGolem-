@@ -207,4 +207,19 @@ public class Player {
 		System.out.printf("%s\nGolem disponibili: %d\n", playerName , listaTamagolem.size());
 	}
 	
+	/**
+	 * It tells whether a rock is present or not in the arraylist listapietre
+	 * @param nome
+	 * @return
+	 */
+	public boolean isThisRockPresent(String nome) {
+		boolean present = false ;
+		for (int i = 0 ; i < listaPietre.size(); i++) {
+			String currentRockName = listaPietre.get(i).getNomeElemento();
+			if(currentRockName.equals(nome)) {
+				return true;
+			}
+		}
+		return present ;
+	}
 }
