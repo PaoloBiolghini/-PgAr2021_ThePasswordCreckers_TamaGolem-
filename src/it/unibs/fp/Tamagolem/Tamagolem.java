@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Tamagolem {
 
+	public static int MaxNumberOfRocks;
     private int vita;
     private ArrayList<Pietra> listaPietre;
 
@@ -32,6 +33,29 @@ public class Tamagolem {
 
         return true;
     }
+    
+    
+
+    public void addPietre(ArrayList<Pietra> _lista) {
+        this.listaPietre=_lista;
+        Tamagolem.MaxNumberOfRocks = _lista.size();
+    }
+
+	public int getVita() {
+		return vita;
+	}
+
+
+
+	public void setVita(int vita) {
+		this.vita = vita;
+	}
+
+	public void setListaPietre(ArrayList<Pietra> listaPietre) {
+		this.listaPietre = listaPietre;
+	}
+	
+
 
 
 }

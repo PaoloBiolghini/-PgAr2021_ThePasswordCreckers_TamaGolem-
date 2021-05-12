@@ -118,5 +118,71 @@ public class Player {
         return currentTamagolem;
     }
 
+    public ArrayList<Tamagolem> getListaTamagolem() {
+ 		return listaTamagolem;
+ 	}
 
+ 	public ArrayList<Pietra> getListaPietre() {
+ 		return listaPietre;
+ 	}
+
+ 	public ArrayList<String> getListaElementi() {
+ 		return listaElementi;
+ 	}
+
+ 	public int getNUMEROPIETRE() {
+ 		return NUMEROPIETRE;
+ 	}
+
+ 	public int getNumeroTamagolem() {
+ 		return NUMEROTAMAGOLEM;
+ 	}
+
+ 	public int getSCORTAPIETRE() {
+ 		return SCORTAPIETRE;
+ 	}
+
+ 	public int getVITA() {
+ 		return VITA;
+ 	}
+
+ 	public void setListaTamagolem(ArrayList<Tamagolem> listaTamagolem) {
+ 		this.listaTamagolem = listaTamagolem;
+ 	}
+
+ 	public void setListaPietre(ArrayList<Pietra> listaPietre) {
+ 		this.listaPietre = listaPietre;
+ 	}
+
+ 	public void setListaElementi(ArrayList<String> listaElementi) {
+ 		this.listaElementi = listaElementi;
+ 	}
+
+ 	public void setNUMEROPIETRE(int nUMEROPIETRE) {
+ 		NUMEROPIETRE = nUMEROPIETRE;
+ 	}
+
+ 	public void setNumeroTamagolem(int numeroTamagolem) {
+ 		this.NUMEROTAMAGOLEM = numeroTamagolem;
+ 	}
+
+ 	public void setSCORTAPIETRE(int sCORTAPIETRE) {
+ 		SCORTAPIETRE = sCORTAPIETRE;
+ 	}
+
+  
+     public void leggiSetPietre() {
+         System.out.println("LISTA PIETRES");
+         for(String s:listaElementi) {
+             int count=0;
+             for(Pietra p:listaPietre)
+                 if(p.getNomeElemento().equals(s))
+                     count++;
+
+             if(count>0)
+                 System.out.println(s+"   n:"+count);
+
+         }
+
+     }
 }

@@ -161,4 +161,14 @@ static public ArrayList<Elemento> getListaElementi()
     return listaElementi;
 }
 
+static public Elemento getElemento(String nomeElemento) {
+	for ( int i = 0 ; i < listaElementi.size(); i++ ) {
+		String currentElement = listaElementi.get(i).getNome();
+		if (currentElement.equals(nomeElemento)) {
+			return listaElementi.get(i);
+		}
+	}
+	return null;
+}
+
 }
