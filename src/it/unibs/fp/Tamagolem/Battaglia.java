@@ -139,7 +139,7 @@ public class Battaglia {
 	}
 
 	/**
-	 * Scontro tra due tamagolem da true se il golem 1 batte il 2
+	 * Scontro tra due tamagolem, restituisce true se il golem 1 batte il 2
 	 * 
 	 * @param pikachu
 	 * @param eevee
@@ -150,7 +150,6 @@ public class Battaglia {
 		boolean someoneIsDead = false;
 		int i = 0;
 		do {
-
 			i = i % pikachu.getListaPietre().size();
 
 			Pietra pikachuBadBoy = pikachu.getListaPietre().get(i);
@@ -178,14 +177,14 @@ public class Battaglia {
 			return false;
 	}
 
-	public static String stringOk(String nome) {
-		String primaLettera = nome.substring(0, 1);
-		String resto = nome.substring(1).toUpperCase();
+	public static String stringDecentFormat(String nome) {
+		String primaLettera = nome.substring(0, 1).toUpperCase();
+		String resto = nome.substring(1);
 		return primaLettera + resto;
 
 	}
 
-	private static void whatIsGoingOn(Tamagolem A, Tamagolem B) {
+	private static void displayBattle(Tamagolem A, Tamagolem B) {
 
 	}
 

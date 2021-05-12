@@ -38,7 +38,7 @@ public class Player {
 			listaElementi.add(e.getNome());
 
 		for (int i = 0; i < NUMEROTAMAGOLEM; i++) {
-			Tamagolem t = new Tamagolem(VITA);
+			Tamagolem t = new Tamagolem(VITA,"GLM"+i);
 			listaTamagolem.add(t);
 		}
 	}
@@ -206,4 +206,5 @@ public class Player {
 	public void statusPlayer() {
 		System.out.printf("%s\nGolem disponibili: %d\n", playerName , listaTamagolem.size());
 	}
+	
 }
