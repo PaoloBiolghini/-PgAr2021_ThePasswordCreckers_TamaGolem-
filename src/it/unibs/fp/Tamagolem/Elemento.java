@@ -96,7 +96,7 @@ public class Elemento {
         mancanti--;
         sommaattuale+=n;
         Set<Integer> result=getSolutionSet(mancanti,reverse);
-        System.out.println(result);
+ //       System.out.println(result);
         sommaattuale-=n;
         return result;
     }

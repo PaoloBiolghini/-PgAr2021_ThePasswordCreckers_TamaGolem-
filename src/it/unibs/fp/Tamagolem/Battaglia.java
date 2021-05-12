@@ -56,7 +56,7 @@ public class Battaglia {
 			} else {
 				System.out.println("B ha perso un TamaGolem");
 				B.getListaTamagolem().remove(b);
-				if (!A.getListaElementi().isEmpty()) {
+				if (!B.getListaElementi().isEmpty()) {
 					Battaglia.evocation(B, B.getListaTamagolem().get(b));
 				}
 			}
@@ -85,41 +85,16 @@ public class Battaglia {
 	public static void evocation(Player currentPlayer, Tamagolem current) {
 		ArrayList<Pietra> pietreScelte = new ArrayList<Pietra>();
 		System.out.println("SCEGLI 3 PIETRE PER IL TAMAGOLEM");
-		currentPlayer.leggiSetPietre();
 		int numPietre = 0;
 		do {
-			Pietra newRock = chooseRock(currentPlayer);
+			Pietra newRock = currentPlayer.chooseRock();
 			pietreScelte.add(newRock);
 			numPietre++;
 		} while (numPietre != currentPlayer.getNUMEROPIETRE());
 		current.addPietre(pietreScelte);
 	}
 
-	/**
-	 * Prende in input la pietra scelta e controlla che sia disponibile nel set ed
-	 * eventualmente la rimuove dal set
-	 * 
-	 * @param currentPlayer
-	 * @return Pietra scelta e Valida
-	 */
-	private static Pietra chooseRock(Player currentPlayer) {
-		Scanner in = new Scanner(System.in);
-		boolean done = false;
-		Pietra newOne = null;
-		do {
-//			String rock = in.next();
-//			newOne = new Pietra(Battaglia.stringOk(rock));
-			int index = in.nextInt();
-			if (index < currentPlayer.getListaPietre().size()) {
-				newOne = currentPlayer.getListaPietre().get(index);
-				currentPlayer.getListaPietre().remove(index);
-				done = true;
-			} else {
-				System.out.println("Pietra non disponibile nel set, scegli nuovamente una pietra");
-			}
-		} while (!done);
-		return newOne;
-	}
+
 
 	/**
 	 * Restituisce true se la prima roccia prevale sulla seconda, false altrimenti

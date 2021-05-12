@@ -222,4 +222,12 @@ public class Player {
 		}
 		return present ;
 	}
+	
+	public Pietra chooseRock() {
+		leggiSetPietre();
+		int indexChosen = InputDati.leggiIntero("Scegli la pietra (indice)-> ", 0, listaPietre.size());
+		Pietra prescelto = listaPietre.get(indexChosen);
+		listaPietre.remove(indexChosen);
+		return prescelto ;
+	}
 }
