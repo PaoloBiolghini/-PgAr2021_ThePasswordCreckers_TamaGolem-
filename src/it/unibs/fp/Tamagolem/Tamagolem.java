@@ -34,8 +34,6 @@ public class Tamagolem {
         return true;
     }
     
-    
-
     public void addPietre(ArrayList<Pietra> _lista) {
         this.listaPietre=_lista;
         Tamagolem.MaxNumberOfRocks = _lista.size();
@@ -55,7 +53,5 @@ public class Tamagolem {
 		this.listaPietre = listaPietre;
 	}
 	
-
-
 
 }

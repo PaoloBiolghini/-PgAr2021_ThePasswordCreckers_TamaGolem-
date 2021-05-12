@@ -5,17 +5,17 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * La classe Battaglia per gestire una lotta tra due Player 
- * In particolare il metodo Battle restituira il vincitore della battaglia
+ * La classe Battaglia per gestire una lotta tra due Player In particolare il
+ * metodo Battle restituira il vincitore della battaglia
  * 
  */
-
 public class Battaglia {
 
 	final static int DEAD = 0;
 
 	/**
 	 * Lotta tra Tamagolem di due Giocatori
+	 * 
 	 * @param A
 	 * @param B
 	 * @return Vincitore
@@ -23,35 +23,42 @@ public class Battaglia {
 	public static Player battle(Player A, Player B) {
 
 		/*
-		 * a tiene conto dell'indice del tamagolem in uso del giocatore A
-		 * b tiene conto dell'indice del tamagolem in uso del giocatore B 
+		 * a tiene conto dell'indice del tamagolem in uso del giocatore A b tiene conto
+		 * dell'indice del tamagolem in uso del giocatore B
 		 */
-		int a = 0 ;
-		int b = 0 ;
+		int a = 0;
+		int b = 0;
 		/*
 		 * Prima evocazione da parte di entrambi i giocatori
 		 */
-		Battaglia.evocation(A, A.getListaTamagolem().get(a)); 
+		Battaglia.evocation(A, A.getListaTamagolem().get(a));
 		Battaglia.evocation(B, B.getListaTamagolem().get(b));
 		/*
-		 * Usando il metodo fight() otteniamo il tamagolem che ha perso
-		 * successivamente verra tolto dalla lista dei tama disponibile del giocatore che lo ha evocato
+		 * Usando il metodo fight() otteniamo il tamagolem che ha perso successivamente
+		 * verra tolto dalla lista dei tama disponibile del giocatore che lo ha evocato
 		 */
 		do {
 
 			boolean loser = Battaglia.fight(A.getListaTamagolem().get(a), B.getListaTamagolem().get(b));
 			/*
-			 * se il golem apparteneva ad A verra rimosso dalla sua lista e l'indice a incrementa di uno e verra fatta l'evocazione
-			 * del nuovo tamagolem col metodo evocation(). stessa cosa ma su liste diverse se il golem deceduto apparteneva a b
+			 * se il golem apparteneva ad A verra rimosso dalla sua lista e l'indice a
+			 * incrementa di uno e verra fatta l'evocazione del nuovo tamagolem col metodo
+			 * evocation(). stessa cosa ma su liste diverse se il golem deceduto apparteneva
+			 * a b
 			 */
 			if (!loser) {
 				System.out.println("A ha perso un tamagolem");
 				A.getListaTamagolem().remove(a);
-				Battaglia.evocation(A, A.getListaTamagolem().get(a));
+				if (!A.getListaElementi().isEmpty()) {
+					Battaglia.evocation(A, A.getListaTamagolem().get(a));
+				}
+				
 			} else {
 				System.out.println("B ha perso un TamaGolem");
 				B.getListaTamagolem().remove(b);
-				Battaglia.evocation(B, B.getListaTamagolem().get(b));
+				if (!A.getListaElementi().isEmpty()) {
+					Battaglia.evocation(B, B.getListaTamagolem().get(b));
+				}
 			}
 			/*
 			 * il ciclo termina quando una delle liste dei giocatori è vuota
@@ -59,12 +66,12 @@ public class Battaglia {
 		} while (!(A.getListaTamagolem().isEmpty()) && !(B.getListaTamagolem().isEmpty()));
 
 		/*
-		 * restituisce il vincitore della lotta 
+		 * restituisce il vincitore della lotta
 		 */
 		if (A.getListaElementi().isEmpty()) {
-			return B ;
+			return B;
 		} else {
-			return A ;
+			return A;
 		}
 	}
 
@@ -132,13 +139,13 @@ public class Battaglia {
 	}
 
 	/**
-	 * Scontro tra due tamagolem
-	 * da true se il golem 1 batte il 2
+	 * Scontro tra due tamagolem da true se il golem 1 batte il 2
+	 * 
 	 * @param pikachu
 	 * @param eevee
-	 * @return 
+	 * @return
 	 */
-	
+
 	public static boolean fight(Tamagolem pikachu, Tamagolem eevee) {
 		boolean someoneIsDead = false;
 		int i = 0;
@@ -166,18 +173,23 @@ public class Battaglia {
 			i++;
 		} while (!someoneIsDead);
 		if (eevee.getVita() <= DEAD) {
-			return true ;
-		} else return false ;
+			return true;
+		} else
+			return false;
 	}
 
 	public static String stringOk(String nome) {
-		String primaLettera = nome.substring(0, 1) ;
+		String primaLettera = nome.substring(0, 1);
 		String resto = nome.substring(1).toUpperCase();
-		return primaLettera+resto;
-		
+		return primaLettera + resto;
+
 	}
-	
-	private static void whatIsGoingOn(Tamagolem A , Tamagolem B) {
-		
+
+	private static void whatIsGoingOn(Tamagolem A, Tamagolem B) {
+
+	}
+
+	public static void praiseWinner(Player winner) {
+
 	}
 }

@@ -3,16 +3,29 @@ package it.unibs.fp.Tamagolem;
 import java.util.ArrayList;
 import java.util.Random;
 
+import it.unibs.fp.mylib.InputDati;
+
 public class Main {
 
+	public static String INIZIO = "TAMAGOLEM 2021", NUM_ELEMENTS = "Numero di elementi -> ";
+	
     public static void main(String[] args) {
 
-			//Grafo1 grafo=new Grafo1(10);
-
-        Random rand=new Random();
-        int i=rand.nextInt(0);
-        System.out.println(i);
+		System.out.println(INIZIO);
+		
+		int numElements = InputDati.leggiIntero(NUM_ELEMENTS, 3, 10);
+		
+		Grafo1 Equilibrio = new Grafo1(numElements);
+		
+		Player A = Player.insertPlayer(numElements);
+		Player B = Player.insertPlayer(numElements);
+		
+		Battaglia.battle(A, B);
+		
+		
+		
     }
 
 
+    
 }
