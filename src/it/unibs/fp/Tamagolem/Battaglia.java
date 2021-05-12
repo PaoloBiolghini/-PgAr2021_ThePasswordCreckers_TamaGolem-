@@ -49,14 +49,14 @@ public class Battaglia {
 			if (!loser) {
 				System.out.println("A ha perso un tamagolem");
 				A.getListaTamagolem().remove(a);
-				if (!A.getListaElementi().isEmpty()) {
+				if (!A.getListaTamagolem().isEmpty()) {
 					Battaglia.evocation(A, A.getListaTamagolem().get(a));
 				}
 				
 			} else {
 				System.out.println("B ha perso un TamaGolem");
 				B.getListaTamagolem().remove(b);
-				if (!B.getListaElementi().isEmpty()) {
+				if (!B.getListaTamagolem().isEmpty()) {
 					Battaglia.evocation(B, B.getListaTamagolem().get(b));
 				}
 			}
@@ -86,6 +86,7 @@ public class Battaglia {
 		ArrayList<Pietra> pietreScelte = new ArrayList<Pietra>();
 		System.out.println("SCEGLI 3 PIETRE PER IL TAMAGOLEM");
 		int numPietre = 0;
+		currentPlayer.leggiSetPietre();
 		do {
 			Pietra newRock = currentPlayer.chooseRock();
 			pietreScelte.add(newRock);

@@ -13,7 +13,7 @@ public class Main {
 
 		System.out.println(INIZIO);
 		
-		int numElements = InputDati.leggiIntero(NUM_ELEMENTS, 3, 10);
+		int numElements = InputDati.leggiIntero(NUM_ELEMENTS, 4, 10);
 		
 		Grafo1 Equilibrio = new Grafo1(numElements);
 		
