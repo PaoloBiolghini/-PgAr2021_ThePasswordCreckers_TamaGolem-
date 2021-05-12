@@ -20,8 +20,7 @@ public class Main {
 		Player A = Player.insertPlayer(numElements);
 		Player B = Player.insertPlayer(numElements);
 		
-		Battaglia.battle(A, B);
-		
+		Battaglia.praiseWinner(Battaglia.battle(A, B));
 		
 		
     }

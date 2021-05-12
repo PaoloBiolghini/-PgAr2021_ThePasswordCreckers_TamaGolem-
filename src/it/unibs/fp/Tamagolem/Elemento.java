@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Elemento {
 
-    private Map<String,Integer> grafo=new HashMap();
+    private Map<String,Integer> grafo = new HashMap();
     private int sommaattuale;
     private int massimoVoti;
     private final int MAX=4;

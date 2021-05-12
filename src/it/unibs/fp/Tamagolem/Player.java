@@ -29,6 +29,9 @@ public class Player {
 		creaSetPietre();
 	}
 
+	public String getPlayerName() {
+		return playerName;
+	}
 	/**
 	 * inserisce nell'arraylist un insieme di tamagolem con n di vita
 	 */

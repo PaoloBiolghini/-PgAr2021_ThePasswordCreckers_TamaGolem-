@@ -68,10 +68,10 @@ public class Battaglia {
 		/*
 		 * restituisce il vincitore della lotta
 		 */
-		if (A.getListaElementi().isEmpty()) {
-			return B;
-		} else {
+		if (!A.getListaElementi().isEmpty()) {
 			return A;
+		} else {
+			return B;
 		}
 	}
 
@@ -121,7 +121,6 @@ public class Battaglia {
 	 * @param eevee
 	 * @return
 	 */
-
 	public static boolean fight(Tamagolem pikachu, Tamagolem eevee) {
 		boolean someoneIsDead = false;
 		int i = 0;
@@ -160,11 +159,11 @@ public class Battaglia {
 
 	}
 
-	private static void displayBattle(Tamagolem A, Tamagolem B) {
+	private void displayBattle(Tamagolem A, Tamagolem B) {
 
 	}
 
 	public static void praiseWinner(Player winner) {
-
+		System.out.println("Grande tu si che sei forte, meno male che ci sei tu vai cosi ben fatto "+winner.getPlayerName());
 	}
 }
