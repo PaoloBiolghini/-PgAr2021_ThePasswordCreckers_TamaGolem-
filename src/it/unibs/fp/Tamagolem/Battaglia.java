@@ -32,6 +32,7 @@ public class Battaglia {
 		 * Prima evocazione da parte di entrambi i giocatori
 		 */
 		Battaglia.evocation(A, A.getListaTamagolem().get(a));
+		
 		Battaglia.evocation(B, B.getListaTamagolem().get(b));
 		/*
 		 * Usando il metodo fight() otteniamo il tamagolem che ha perso successivamente
@@ -47,14 +48,14 @@ public class Battaglia {
 			 * a b
 			 */
 			if (!loser) {
-				System.out.println("A ha perso un tamagolem");
+				System.out.println(A.getPlayerName()+" ha perso un tamagolem");
 				A.getListaTamagolem().remove(a);
 				if (!A.getListaTamagolem().isEmpty()) {
 					Battaglia.evocation(A, A.getListaTamagolem().get(a));
 				}
 				
 			} else {
-				System.out.println("B ha perso un TamaGolem");
+				System.out.println(B.getPlayerName()+" ha perso un TamaGolem");
 				B.getListaTamagolem().remove(b);
 				if (!B.getListaTamagolem().isEmpty()) {
 					Battaglia.evocation(B, B.getListaTamagolem().get(b));
@@ -68,7 +69,7 @@ public class Battaglia {
 		/*
 		 * restituisce il vincitore della lotta
 		 */
-		if (!A.getListaElementi().isEmpty()) {
+		if (A.getListaElementi().isEmpty()) {
 			return A;
 		} else {
 			return B;
@@ -124,13 +125,15 @@ public class Battaglia {
 	public static boolean fight(Tamagolem pikachu, Tamagolem eevee) {
 		boolean someoneIsDead = false;
 		int i = 0;
-		System.out.println("-*-*-"+pikachu.getID()+ "VS" + eevee.getID()+"-*-*-");
+		System.out.println("-*-*-"+pikachu.getID()+ " VS " + eevee.getID()+"-*-*-");
 		do {
 			i = i % pikachu.getListaPietre().size();
 
 			Pietra pikachuBadBoy = pikachu.getListaPietre().get(i);
 			Pietra eeveeBadBeast = eevee.getListaPietre().get(i);
 
+			displayBattle(pikachu, eevee, pikachuBadBoy, eeveeBadBeast);
+			
 			Map<String, Integer> pikachuGraph = pikachuBadBoy.getElement().getGrafo();
 			Map<String, Integer> eeveeGraph = eeveeBadBeast.getElement().getGrafo();
 
@@ -166,11 +169,23 @@ public class Battaglia {
 
 	}
 
-	private void displayBattle(Tamagolem A, Tamagolem B) {
+	private static void displayBattle(Tamagolem A, Tamagolem B, Pietra a , Pietra b) {
+		String Forte = null;
+		if(Battaglia.whichOneIsStronger(a, b)) {
+			Forte = a.getNomeElemento();
+		} else {
+			Forte = b.getNomeElemento();
+		} 
+		if(a.getNomeElemento().equals(b.getNomeElemento())) {
+			Forte = "...Nothing happens...";
+		}
+		System.out.printf("[ %s PV : %-2d ] %-6s --> %s <-- %6s [ %s PV : %d ]\n", A.getID(), A.getVita(), a.getNomeElemento(),Forte, b.getNomeElemento(), B.getID(),B.getVita());
 		
 	}
 
 	public static void praiseWinner(Player winner) {
 		System.out.println("Grande tu si che sei forte, meno male che ci sei tu vai cosi ben fatto "+winner.getPlayerName());
 	}
+	
+	
 }

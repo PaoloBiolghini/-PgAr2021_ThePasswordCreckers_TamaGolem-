@@ -41,10 +41,12 @@ public class Player {
 			listaElementi.add(e.getNome());
 
 		for (int i = 0; i < NUMEROTAMAGOLEM; i++) {
-			Tamagolem t = new Tamagolem(VITA,"GLM"+i);
+			Tamagolem t = new Tamagolem(VITA,"GLM"+i+playerName.substring(0,1).toUpperCase());
 			listaTamagolem.add(t);
 		}
 	}
+	
+	
 
 	/**
 	 * crea il set di pietre del player
@@ -67,7 +69,7 @@ public class Player {
 	 */
 	public Pietra addPietraToTama() {
 		System.out.println("----------LISTA PIETRE----------");
-		System.out.println("Indice           Nome: "+playerName);
+		System.out.println("Indice            Nome: "+playerName);
 		ArrayList<Pietra> listaAttuali = new ArrayList<Pietra>();
 		int i = 1;
 		// itero per ogni elemento della lista e controllo che ci sia almeno un elemento
