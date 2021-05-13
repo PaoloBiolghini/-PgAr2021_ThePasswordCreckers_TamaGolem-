@@ -67,8 +67,8 @@ public class Player {
 	 */
 	public Pietra addPietraToTama() {
 		System.out.println("----------LISTA PIETRE----------");
-		System.out.println("Indice           Nome:");
-		ArrayList<Pietra> listaAttuali = new ArrayList<>();
+		System.out.println("Indice           Nome: "+playerName);
+		ArrayList<Pietra> listaAttuali = new ArrayList<Pietra>();
 		int i = 1;
 		// itero per ogni elemento della lista e controllo che ci sia almeno un elemento
 		// nel set disponibile
@@ -81,9 +81,9 @@ public class Player {
 					listaAttuali.add(p);
 					break;
 				}
-
 			if (count > 0) {
-				System.out.println(i + "   " + s);
+			//	System.out.println(i + "   " + s + "   quantità: " + numberOfthisTypeOfRock(s));
+				System.out.printf("%d   %-8s      disponibili: %d\n",i,s,numberOfthisTypeOfRock(s));
 				i++;
 			}
 		}
@@ -228,7 +228,16 @@ public class Player {
 		return present ;
 	}
 	
-	
+	private int numberOfthisTypeOfRock(String nome) {
+		int count = 0 ;
+		for ( int i = 0 ; i < listaPietre.size(); i++ ) {
+			String currentRock = listaPietre.get(i).getNomeElemento();
+			if(currentRock.equals(nome)) {
+				count++;
+			}
+		}
+		return count;
+	}
 	public Pietra chooseRock() {
 		ArrayList <Pietra> lista = new ArrayList<Pietra>();	
 		for( int i = 0 ; i < listaPietre.size();i++) {

@@ -86,7 +86,7 @@ public class Battaglia {
 		ArrayList<Pietra> pietreScelte = new ArrayList<Pietra>();
 		System.out.println("SCEGLI 3 PIETRE PER IL TAMAGOLEM");
 		int numPietre = 0;
-		currentPlayer.leggiSetPietre();
+//		currentPlayer.leggiSetPietre();
 		do {
 			Pietra newRock = currentPlayer.addPietraToTama();
 			pietreScelte.add(newRock);
@@ -124,6 +124,7 @@ public class Battaglia {
 	public static boolean fight(Tamagolem pikachu, Tamagolem eevee) {
 		boolean someoneIsDead = false;
 		int i = 0;
+		System.out.println("-*-*-"+pikachu.getID()+ "VS" + eevee.getID()+"-*-*-");
 		do {
 			i = i % pikachu.getListaPietre().size();
 
@@ -160,7 +161,7 @@ public class Battaglia {
 	}
 
 	private void displayBattle(Tamagolem A, Tamagolem B) {
-
+		
 	}
 
 	public static void praiseWinner(Player winner) {
