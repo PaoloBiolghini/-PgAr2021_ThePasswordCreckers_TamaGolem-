@@ -88,7 +88,7 @@ public class Battaglia {
 		int numPietre = 0;
 		currentPlayer.leggiSetPietre();
 		do {
-			Pietra newRock = currentPlayer.chooseRock();
+			Pietra newRock = currentPlayer.addPietraToTama();
 			pietreScelte.add(newRock);
 			numPietre++;
 		} while (numPietre != currentPlayer.getNUMEROPIETRE());

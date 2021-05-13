@@ -65,7 +65,7 @@ public class Player {
 	 * fianco di queste il payer decide di inserire quella pietra all'interno del
 	 * tamagolem corrente
 	 */
-	public void addPietraToTama() {
+	public Pietra addPietraToTama() {
 		System.out.println("----------LISTA PIETRE----------");
 		System.out.println("Indice           Nome:");
 		ArrayList<Pietra> listaAttuali = new ArrayList<>();
@@ -95,9 +95,11 @@ public class Player {
 
 		Pietra pietraSelected = listaAttuali.get(scelta);
 
-		currentTamagolem.addPietre(pietraSelected);
+//		currentTamagolem.addPietre(pietraSelected);
 
 		listaPietre.remove(pietraSelected);
+		
+		return pietraSelected;
 	}
 
 	public boolean newTama() {
@@ -226,10 +228,24 @@ public class Player {
 		return present ;
 	}
 	
+	
 	public Pietra chooseRock() {
-		int indexChosen = InputDati.leggiIntero("Scegli la pietra (indice)-> ", 0, listaPietre.size());
-		Pietra prescelto = listaPietre.get(indexChosen);
-		listaPietre.remove(indexChosen);
+		ArrayList <Pietra> lista = new ArrayList<Pietra>();	
+		for( int i = 0 ; i < listaPietre.size();i++) {
+			int count = 0 ;
+			for (String element : listaElementi) {
+				if(element.equals(getListaPietre().get(i).getNomeElemento())) {
+					count++;
+				}
+			}
+			if (count > 0) {
+				lista.add(listaPietre.get(i));
+				System.out.println(listaPietre.get(i).getNomeElemento() + " n: "+count);
+			}
+		}
+		int indexChosen = InputDati.leggiIntero("Scegli la pietra (indice)-> ", 0, lista.size());
+		Pietra prescelto = lista.get(indexChosen);
+		listaPietre.remove(prescelto);
 		return prescelto ;
 	}
 }
