@@ -139,8 +139,14 @@ public class Battaglia {
 
 			if (Battaglia.whichOneIsStronger(pikachuBadBoy, eeveeBadBeast)) {
 				eevee.setVita(eevee.getVita() - pikachuGraph.get(eeveeRockElementName));
+				if(eevee.getVita() <DEAD) {
+					eevee.setVita(DEAD);
+				}
 			} else {
 				pikachu.setVita(pikachu.getVita() - eeveeGraph.get(pikachuRockElementName));
+				if(pikachu.getVita() <DEAD) {
+					pikachu.setVita(DEAD);
+				}
 			}
 			if (eevee.getVita() <= DEAD || pikachu.getVita() <= DEAD) {
 				someoneIsDead = true;
