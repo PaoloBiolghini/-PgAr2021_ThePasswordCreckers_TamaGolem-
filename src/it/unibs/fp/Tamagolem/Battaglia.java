@@ -177,9 +177,9 @@ public class Battaglia {
 			Forte = b.getNomeElemento();
 		} 
 		if(a.getNomeElemento().equals(b.getNomeElemento())) {
-			Forte = "...Nothing happens...";
+			Forte = "Nothing!";
 		}
-		System.out.printf("[ %s PV : %-2d ] %-6s --> %s <-- %6s [ %s PV : %d ]\n", A.getID(), A.getVita(), a.getNomeElemento(),Forte, b.getNomeElemento(), B.getID(),B.getVita());
+		System.out.printf("[ %s PV : %-2d ] %-6s --> %-8s <-- %6s [ %s PV : %d ]\n", A.getID(), A.getVita(), a.getNomeElemento(),Forte, b.getNomeElemento(), B.getID(),B.getVita());
 		
 	}
 
