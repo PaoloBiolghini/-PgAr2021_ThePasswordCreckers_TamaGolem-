@@ -40,6 +40,11 @@ public class Tamagolem {
         return true;
     }
     
+    /**
+     * aggiunge le pietre scelte durante l'evocazione al golem
+     * @param _lista
+     */
+    
     public void addPietre(ArrayList<Pietra> _lista) {
         this.listaPietre=_lista;
         Tamagolem.MaxNumberOfRocks = _lista.size();

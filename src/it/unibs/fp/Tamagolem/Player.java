@@ -32,6 +32,31 @@ public class Player {
 	public String getPlayerName() {
 		return playerName;
 	}
+	
+	public Tamagolem getCurrentTamagolem() {
+		return currentTamagolem;
+	}
+
+	public ArrayList<Tamagolem> getListaTamagolem() {
+		return listaTamagolem;
+	}
+
+	public ArrayList<Pietra> getListaPietre() {
+		return listaPietre;
+	}
+
+	public ArrayList<String> getListaElementi() {
+		return listaElementi;
+	}
+
+	public int getNUMEROPIETRE() {
+		return NUMEROPIETRE;
+	}
+
+	public int getNumeroTamagolem() {
+		return NUMEROTAMAGOLEM;
+	}
+	
 	/**
 	 * inserisce nell'arraylist un insieme di tamagolem con n di vita
 	 */
@@ -122,62 +147,9 @@ public class Player {
 		return true;
 	}
 
-	public Tamagolem getCurrentTamagolem() {
-		return currentTamagolem;
-	}
-
-	public ArrayList<Tamagolem> getListaTamagolem() {
-		return listaTamagolem;
-	}
-
-	public ArrayList<Pietra> getListaPietre() {
-		return listaPietre;
-	}
-
-	public ArrayList<String> getListaElementi() {
-		return listaElementi;
-	}
-
-	public int getNUMEROPIETRE() {
-		return NUMEROPIETRE;
-	}
-
-	public int getNumeroTamagolem() {
-		return NUMEROTAMAGOLEM;
-	}
-
-	public int getSCORTAPIETRE() {
-		return SCORTAPIETRE;
-	}
-
-	public int getVITA() {
-		return VITA;
-	}
-
-	public void setListaTamagolem(ArrayList<Tamagolem> listaTamagolem) {
-		this.listaTamagolem = listaTamagolem;
-	}
-
-	public void setListaPietre(ArrayList<Pietra> listaPietre) {
-		this.listaPietre = listaPietre;
-	}
-
-	public void setListaElementi(ArrayList<String> listaElementi) {
-		this.listaElementi = listaElementi;
-	}
-
-	public void setNUMEROPIETRE(int nUMEROPIETRE) {
-		NUMEROPIETRE = nUMEROPIETRE;
-	}
-
-	public void setNumeroTamagolem(int numeroTamagolem) {
-		this.NUMEROTAMAGOLEM = numeroTamagolem;
-	}
-
-	public void setSCORTAPIETRE(int sCORTAPIETRE) {
-		SCORTAPIETRE = sCORTAPIETRE;
-	}
-
+	/**
+	 * Stampa a video il set di pietre
+	 */
 	public void leggiSetPietre() {
 		System.out.println("LISTA PIETRES");
 		for (String s : listaElementi) {
@@ -230,6 +202,12 @@ public class Player {
 		return present ;
 	}
 	
+	/**
+	 * Tramite il nome della pietra verifiche quante ve ne sono disponibili nel set del Player
+	 * @param nome
+	 * @return
+	 */
+	
 	private int numberOfthisTypeOfRock(String nome) {
 		int count = 0 ;
 		for ( int i = 0 ; i < listaPietre.size(); i++ ) {
@@ -240,6 +218,12 @@ public class Player {
 		}
 		return count;
 	}
+	
+	/**
+	 * Consente al giocatore di scegliere una pietra tra le disponibili da dare al tamagolem durante l'evocazione
+	 * @return
+	 */
+	
 	public Pietra chooseRock() {
 		ArrayList <Pietra> lista = new ArrayList<Pietra>();	
 		for( int i = 0 ; i < listaPietre.size();i++) {

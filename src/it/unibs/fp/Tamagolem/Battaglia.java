@@ -164,14 +164,21 @@ public class Battaglia {
 		} else
 			return false;
 	}
-
+/*
 	public static String stringDecentFormat(String nome) {
 		String primaLettera = nome.substring(0, 1).toUpperCase();
 		String resto = nome.substring(1);
 		return primaLettera + resto;
 
 	}
-
+*/
+	/**
+	 * Stampa a video I golem con i rispettivi punti vita e le roccie lanciate
+	 * @param A
+	 * @param B
+	 * @param a
+	 * @param b
+	 */
 	private static void displayBattle(Tamagolem A, Tamagolem B, Pietra a , Pietra b) {
 		String Forte = null;
 		if(Battaglia.whichOneIsStronger(a, b)) {
@@ -186,10 +193,19 @@ public class Battaglia {
 		
 	}
 
+	/**
+	 * Stampa a video il nome dei Player e i Tamagolem rimanenti
+	 * @param A
+	 * @param B
+	 */
 	private static void statoBattaglia(Player A , Player B) {
 		System.out.printf("%s Tgolem rimasti: %d  VS  %s Tgolem rimasti: %d\n", A.getPlayerName(), A.getListaTamagolem().size(), B.getPlayerName(), B.getListaTamagolem().size() );
 	}
 	
+	/**
+	 * Dichiara il vincitore
+	 * @param winner
+	 */
 	public static void praiseWinner(Player winner) {
 		System.out.println("Grande tu si che sei forte, meno male che ci sei tu vai cosi ben fatto "+winner.getPlayerName());
 	}
