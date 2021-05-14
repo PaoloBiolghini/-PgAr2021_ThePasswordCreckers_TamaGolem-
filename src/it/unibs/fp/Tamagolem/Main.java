@@ -22,7 +22,7 @@ public class Main {
 		
 		Battaglia.praiseWinner(Battaglia.battle(A, B));
 		
-		
+		Equilibrio.showEquilibrio();
     }
 
 

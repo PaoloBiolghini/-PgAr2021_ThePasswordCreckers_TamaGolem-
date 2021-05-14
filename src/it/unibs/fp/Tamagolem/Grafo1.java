@@ -171,6 +171,14 @@ public static Elemento getElemento(String nomeElemento) {
 	return null;
 }
 
+public void showEquilibrio() {
+	System.out.println("-------- Equilibrio --------");
+	for(Elemento e:listaElementi) {
+        System.out.print(e.getNome() +" ");
+        System.out.println(e.getGrafo());
+    }
+}
+
 
 
 
