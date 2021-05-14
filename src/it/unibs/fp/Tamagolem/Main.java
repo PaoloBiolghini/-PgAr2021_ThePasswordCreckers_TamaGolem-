@@ -13,16 +13,26 @@ public class Main {
 
 		System.out.println(INIZIO);
 		
-		int numElements = InputDati.leggiIntero(NUM_ELEMENTS, 4, 10);
+		boolean go = false ;
 		
-		Grafo1 Equilibrio = new Grafo1(numElements);
+		do {
+			
+			int numElements = InputDati.leggiIntero(NUM_ELEMENTS, 4, 10);
+			
+			Grafo1 Equilibrio = new Grafo1(numElements);
+			
+			Player A = Player.insertPlayer(numElements);
+			Player B = Player.insertPlayer(numElements);
+			
+			Battaglia.praiseWinner(Battaglia.battle(A, B));
+			
+			Equilibrio.showEquilibrio();
+			
+			go = InputDati.yesOrNo("Nuova Partita? ");
+			
+		}while(go);
 		
-		Player A = Player.insertPlayer(numElements);
-		Player B = Player.insertPlayer(numElements);
-		
-		Battaglia.praiseWinner(Battaglia.battle(A, B));
-		
-		Equilibrio.showEquilibrio();
+		System.out.println("TAMAGOLEM 2021 - END");
     }
 
 

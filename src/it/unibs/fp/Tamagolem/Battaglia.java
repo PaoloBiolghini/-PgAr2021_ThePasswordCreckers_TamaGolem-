@@ -38,6 +38,7 @@ public class Battaglia {
 		 * Usando il metodo fight() otteniamo il tamagolem che ha perso successivamente
 		 * verra tolto dalla lista dei tama disponibile del giocatore che lo ha evocato
 		 */
+		Battaglia.statoBattaglia(A, B);
 		do {
 
 			boolean loser = Battaglia.fight(A.getListaTamagolem().get(a), B.getListaTamagolem().get(b));
@@ -47,6 +48,7 @@ public class Battaglia {
 			 * evocation(). stessa cosa ma su liste diverse se il golem deceduto apparteneva
 			 * a b
 			 */
+			
 			if (!loser) {
 				System.out.println(A.getPlayerName()+" ha perso un tamagolem");
 				A.getListaTamagolem().remove(a);
@@ -64,6 +66,7 @@ public class Battaglia {
 			/*
 			 * il ciclo termina quando una delle liste dei giocatori è vuota
 			 */
+			Battaglia.statoBattaglia(A, B);
 		} while (!(A.getListaTamagolem().isEmpty()) && !(B.getListaTamagolem().isEmpty()));
 
 		/*
@@ -183,6 +186,10 @@ public class Battaglia {
 		
 	}
 
+	private static void statoBattaglia(Player A , Player B) {
+		System.out.printf("%s Tgolem rimasti: %d  VS  %s Tgolem rimasti: %d\n", A.getPlayerName(), A.getListaTamagolem().size(), B.getPlayerName(), B.getListaTamagolem().size() );
+	}
+	
 	public static void praiseWinner(Player winner) {
 		System.out.println("Grande tu si che sei forte, meno male che ci sei tu vai cosi ben fatto "+winner.getPlayerName());
 	}
