@@ -46,8 +46,8 @@ public class Battaglia {
 
 			boolean loser = Battaglia.fight(A.getListaTamagolem().get(a), B.getListaTamagolem().get(b));
 			/*
-			 * se il golem apparteneva ad A verra rimosso dalla sua lista e l'indice a
-			 * incrementa di uno e verra fatta l'evocazione del nuovo tamagolem col metodo
+			 * se il golem apparteneva ad A verra rimosso dalla sua lista 
+			 * e verra fatta l'evocazione del nuovo tamagolem col metodo
 			 * evocation(). stessa cosa ma su liste diverse se il golem deceduto apparteneva
 			 * a b
 			 */
