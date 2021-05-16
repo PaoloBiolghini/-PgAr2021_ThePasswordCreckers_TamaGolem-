@@ -24,7 +24,9 @@ public class Main {
 			
 			Grafo1 Equilibrio = new Grafo1(numElements);
 			
+			System.out.println("GIOCATORE 1");
 			Player A = Player.insertPlayer(numElements,new ArrayList<Pietra>());
+			System.out.println("GIOCATORE 2");
 			Player B = Player.insertPlayer(numElements, A.getListaPietre());
 			
 			Battaglia.praiseWinner(Battaglia.battle(A, B));

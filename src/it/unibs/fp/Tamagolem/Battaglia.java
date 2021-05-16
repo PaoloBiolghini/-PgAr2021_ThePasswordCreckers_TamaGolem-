@@ -41,9 +41,9 @@ public class Battaglia {
 		 * Usando il metodo fight() otteniamo il tamagolem che ha perso successivamente
 		 * verra tolto dalla lista dei tama disponibile del giocatore che lo ha evocato
 		 */
-		Battaglia.statoBattaglia(A, B);
+		
 		do {
-
+			Battaglia.statoBattaglia(A, B);
 			boolean loser = Battaglia.fight(A.getListaTamagolem().get(a), B.getListaTamagolem().get(b));
 			/*
 			 * se il golem apparteneva ad A verra rimosso dalla sua lista 
@@ -102,6 +102,7 @@ public class Battaglia {
 					Pietra newRock = currentPlayer.addPietraToTama();
 					pietreScelte.add(newRock);
 					numPietre++;
+					System.out.println("Numero pietre scelte "+numPietre);
 				} while (numPietre != currentPlayer.getNUMEROPIETRE());
 
 				if (checkListPietre(pietreScelte, AvvLista)) {
@@ -115,6 +116,7 @@ public class Battaglia {
 				Pietra newRock = currentPlayer.addPietraToTama();
 				pietreScelte.add(newRock);
 				numPietre++;
+				System.out.println("Numero pietre scelte "+numPietre);
 			} while (numPietre != currentPlayer.getNUMEROPIETRE());
 		}
 		current.addPietre(pietreScelte);
