@@ -7,7 +7,7 @@ public class Tamagolem {
 	private String ID ;
 	public static int MaxNumberOfRocks;
     private int vita;
-    private ArrayList<Pietra> listaPietre;
+    private ArrayList<Pietra> listaPietre = new ArrayList<Pietra>();
 
     public String getID() {
     	return ID;

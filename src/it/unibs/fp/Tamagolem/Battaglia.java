@@ -1,7 +1,9 @@
 package it.unibs.fp.Tamagolem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -31,9 +33,10 @@ public class Battaglia {
 		/*
 		 * Prima evocazione da parte di entrambi i giocatori
 		 */
-		Battaglia.evocation(A, A.getListaTamagolem().get(a));
-		
-		Battaglia.evocation(B, B.getListaTamagolem().get(b));
+		Battaglia.evocation(A, A.getListaTamagolem().get(a), B.getListaTamagolem().get(b));
+
+		Battaglia.evocation(B, B.getListaTamagolem().get(b), A.getListaTamagolem().get(a));
+
 		/*
 		 * Usando il metodo fight() otteniamo il tamagolem che ha perso successivamente
 		 * verra tolto dalla lista dei tama disponibile del giocatore che lo ha evocato
@@ -48,19 +51,18 @@ public class Battaglia {
 			 * evocation(). stessa cosa ma su liste diverse se il golem deceduto apparteneva
 			 * a b
 			 */
-			
+
 			if (!loser) {
-				System.out.println(A.getPlayerName()+" ha perso un tamagolem");
+				System.out.println(A.getPlayerName() + " ha perso un tamagolem");
 				A.getListaTamagolem().remove(a);
 				if (!A.getListaTamagolem().isEmpty()) {
-					Battaglia.evocation(A, A.getListaTamagolem().get(a));
+					Battaglia.evocation(A, A.getListaTamagolem().get(a), B.getListaTamagolem().get(b));
 				}
-				
 			} else {
-				System.out.println(B.getPlayerName()+" ha perso un TamaGolem");
+				System.out.println(B.getPlayerName() + " ha perso un TamaGolem");
 				B.getListaTamagolem().remove(b);
 				if (!B.getListaTamagolem().isEmpty()) {
-					Battaglia.evocation(B, B.getListaTamagolem().get(b));
+					Battaglia.evocation(B, B.getListaTamagolem().get(b), A.getListaTamagolem().get(a));
 				}
 			}
 			/*
@@ -86,20 +88,53 @@ public class Battaglia {
 	 * @param currentPlayer
 	 * @param current
 	 */
-	public static void evocation(Player currentPlayer, Tamagolem current) {
+	public static void evocation(Player currentPlayer, Tamagolem current, Tamagolem Avv) {
 		ArrayList<Pietra> pietreScelte = new ArrayList<Pietra>();
+		ArrayList<Pietra> AvvLista = Avv.getListaPietre();
 		System.out.println("SCEGLI 3 PIETRE PER IL TAMAGOLEM");
-		int numPietre = 0;
+//		int uguali = 0 ;
+		
 //		currentPlayer.leggiSetPietre();
-		do {
-			Pietra newRock = currentPlayer.addPietraToTama();
-			pietreScelte.add(newRock);
-			numPietre++;
-		} while (numPietre != currentPlayer.getNUMEROPIETRE());
+		if (!AvvLista.isEmpty()) {
+			do {
+				int numPietre = 0;
+				do {
+					Pietra newRock = currentPlayer.addPietraToTama();
+					pietreScelte.add(newRock);
+					numPietre++;
+				} while (numPietre != currentPlayer.getNUMEROPIETRE());
+
+				if (checkListPietre(pietreScelte, AvvLista)) {
+					currentPlayer.riaggiungiPietre(pietreScelte);
+					pietreScelte.clear();
+				}
+			} while (checkListPietre(pietreScelte, AvvLista));
+		} else {
+			int numPietre = 0;
+			do {
+				Pietra newRock = currentPlayer.addPietraToTama();
+				pietreScelte.add(newRock);
+				numPietre++;
+			} while (numPietre != currentPlayer.getNUMEROPIETRE());
+		}
 		current.addPietre(pietreScelte);
 	}
 
-
+	/*
+	 * private static void swapPietre(ArrayList<Pietra> A, ArrayList<Pietra> B) { do
+	 * { Random rand = new Random(); int indexOne = rand.nextInt(A.size()); int
+	 * indexTwo = rand.nextInt(A.size()); Collections.swap(A, indexOne, indexTwo); }
+	 * while (checkListPietre(A, B)); }
+	 */
+	private static boolean checkListPietre(ArrayList<Pietra> A, ArrayList<Pietra> B) {
+		boolean uguali = true;
+		for (int i = 0; i < A.size(); i++) {
+			if (!A.get(i).getNomeElemento().equals(B.get(i).getNomeElemento())) {
+				uguali = false;
+			}
+		}
+		return uguali;
+	}
 
 	/**
 	 * Restituisce true se la prima roccia prevale sulla seconda, false altrimenti
@@ -128,7 +163,7 @@ public class Battaglia {
 	public static boolean fight(Tamagolem pikachu, Tamagolem eevee) {
 		boolean someoneIsDead = false;
 		int i = 0;
-		System.out.println("-*-*-"+pikachu.getID()+ " VS " + eevee.getID()+"-*-*-");
+		System.out.println("-*-*-" + pikachu.getID() + " VS " + eevee.getID() + "-*-*-");
 		do {
 			i = i % pikachu.getListaPietre().size();
 
@@ -136,7 +171,7 @@ public class Battaglia {
 			Pietra eeveeBadBeast = eevee.getListaPietre().get(i);
 
 			displayBattle(pikachu, eevee, pikachuBadBoy, eeveeBadBeast);
-			
+
 			Map<String, Integer> pikachuGraph = pikachuBadBoy.getElement().getGrafo();
 			Map<String, Integer> eeveeGraph = eeveeBadBeast.getElement().getGrafo();
 
@@ -145,12 +180,12 @@ public class Battaglia {
 
 			if (Battaglia.whichOneIsStronger(pikachuBadBoy, eeveeBadBeast)) {
 				eevee.setVita(eevee.getVita() - pikachuGraph.get(eeveeRockElementName));
-				if(eevee.getVita() <DEAD) {
+				if (eevee.getVita() < DEAD) {
 					eevee.setVita(DEAD);
 				}
 			} else {
 				pikachu.setVita(pikachu.getVita() - eeveeGraph.get(pikachuRockElementName));
-				if(pikachu.getVita() <DEAD) {
+				if (pikachu.getVita() < DEAD) {
 					pikachu.setVita(DEAD);
 				}
 			}
@@ -164,51 +199,55 @@ public class Battaglia {
 		} else
 			return false;
 	}
-/*
-	public static String stringDecentFormat(String nome) {
-		String primaLettera = nome.substring(0, 1).toUpperCase();
-		String resto = nome.substring(1);
-		return primaLettera + resto;
 
-	}
-*/
+	/*
+	 * public static String stringDecentFormat(String nome) { String primaLettera =
+	 * nome.substring(0, 1).toUpperCase(); String resto = nome.substring(1); return
+	 * primaLettera + resto;
+	 * 
+	 * }
+	 */
 	/**
 	 * Stampa a video I golem con i rispettivi punti vita e le roccie lanciate
+	 * 
 	 * @param A
 	 * @param B
 	 * @param a
 	 * @param b
 	 */
-	private static void displayBattle(Tamagolem A, Tamagolem B, Pietra a , Pietra b) {
+	private static void displayBattle(Tamagolem A, Tamagolem B, Pietra a, Pietra b) {
 		String Forte = null;
-		if(Battaglia.whichOneIsStronger(a, b)) {
+		if (Battaglia.whichOneIsStronger(a, b)) {
 			Forte = a.getNomeElemento();
 		} else {
 			Forte = b.getNomeElemento();
-		} 
-		if(a.getNomeElemento().equals(b.getNomeElemento())) {
+		}
+		if (a.getNomeElemento().equals(b.getNomeElemento())) {
 			Forte = "Nothing!";
 		}
-		System.out.printf("[ %s PV : %-2d ] %-6s --> %-8s <-- %6s [ %s PV : %d ]\n", A.getID(), A.getVita(), a.getNomeElemento(),Forte, b.getNomeElemento(), B.getID(),B.getVita());
-		
+		System.out.printf("[ %s PV : %-2d ] %-6s --> %-8s <-- %6s [ %s PV : %d ]\n", A.getID(), A.getVita(),
+				a.getNomeElemento(), Forte, b.getNomeElemento(), B.getID(), B.getVita());
+
 	}
 
 	/**
 	 * Stampa a video il nome dei Player e i Tamagolem rimanenti
+	 * 
 	 * @param A
 	 * @param B
 	 */
-	private static void statoBattaglia(Player A , Player B) {
-		System.out.printf("%s Tgolem rimasti: %d  VS  %s Tgolem rimasti: %d\n", A.getPlayerName(), A.getListaTamagolem().size(), B.getPlayerName(), B.getListaTamagolem().size() );
+	private static void statoBattaglia(Player A, Player B) {
+		System.out.printf("%s Tgolem rimasti: %d  VS  %s Tgolem rimasti: %d\n", A.getPlayerName(),
+				A.getListaTamagolem().size(), B.getPlayerName(), B.getListaTamagolem().size());
 	}
-	
+
 	/**
 	 * Dichiara il vincitore
+	 * 
 	 * @param winner
 	 */
 	public static void praiseWinner(Player winner) {
-		System.out.println("Grande tu si che sei forte, meno male che ci sei tu vai cosi ben fatto "+winner.getPlayerName());
+		System.out.println("Ha vinto " + winner.getPlayerName());
 	}
-	
-	
+
 }

@@ -15,14 +15,17 @@ public class Main {
 		
 		boolean go = false ;
 		
+		Random rand = new Random();
+		
 		do {
 			
-			int numElements = InputDati.leggiIntero(NUM_ELEMENTS, 4, 10);
+			int numElements = rand.nextInt(7)+4;
+			System.out.println("Numero di elementi in gioco "+ numElements);
 			
 			Grafo1 Equilibrio = new Grafo1(numElements);
 			
-			Player A = Player.insertPlayer(numElements);
-			Player B = Player.insertPlayer(numElements);
+			Player A = Player.insertPlayer(numElements,new ArrayList<Pietra>());
+			Player B = Player.insertPlayer(numElements, A.getListaPietre());
 			
 			Battaglia.praiseWinner(Battaglia.battle(A, B));
 			

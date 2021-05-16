@@ -11,22 +11,32 @@ public class Player {
 	private String playerName;
 	private ArrayList<Tamagolem> listaTamagolem;
 	private ArrayList<Pietra> listaPietre;
-	private ArrayList<String> listaElementi = new ArrayList<>();
+	private ArrayList<String> listaElementi = new ArrayList<String>();
 	private Tamagolem currentTamagolem;
 	private int NUMEROPIETRE;
 	private int NUMEROTAMAGOLEM;
 	private int SCORTAPIETRE;
 	private int tamagolemSelected;
-	private final int VITA = 10;
+	private int numeroElementi;
+	private final static int VITA = 10;
 
-	public Player(int n, String name) {
+	public Player(int n, String name, ArrayList<Pietra> listaRocks) {
 		this.NUMEROPIETRE = ((n + 1) / 3) + 1;
 		tamagolemSelected = -1;
 		this.NUMEROTAMAGOLEM = ((n - 1) * (n - 2) / (2 * this.NUMEROPIETRE));
-		this.SCORTAPIETRE = ((2 * NUMEROTAMAGOLEM * NUMEROPIETRE) / n) * n;
+		this.SCORTAPIETRE = ((2 * NUMEROTAMAGOLEM * NUMEROPIETRE) / n) * n ;
+		this.numeroElementi = (2 * NUMEROTAMAGOLEM *NUMEROPIETRE) / n ;
 		this.playerName = name;
 		creaTamagolem();
-		creaSetPietre();
+		if(listaRocks.isEmpty()) {
+			creaSetPietre(n);
+		} else {
+			listaPietre = listaRocks ;
+		}
+	}
+	
+	public static int getVitaMax () {
+		return VITA;
 	}
 
 	public String getPlayerName() {
@@ -43,6 +53,12 @@ public class Player {
 
 	public ArrayList<Pietra> getListaPietre() {
 		return listaPietre;
+	}
+	
+	public void riaggiungiPietre(ArrayList<Pietra> lista) {
+		for ( int i = 0 ; i < lista.size(); i++) {
+			listaPietre.add(lista.get(i));
+		}
 	}
 
 	public ArrayList<String> getListaElementi() {
@@ -76,15 +92,20 @@ public class Player {
 	/**
 	 * crea il set di pietre del player
 	 */
-	private void creaSetPietre() {
+	private void creaSetPietre(int n) {
 		listaPietre = new ArrayList<>();
-		Random rand = new Random();
+/*		Random rand = new Random();
 		for (int i = 0; i < SCORTAPIETRE; i++) {
 			int pos = rand.nextInt(listaElementi.size());
 			Pietra p = new Pietra(listaElementi.get(pos));
-			listaPietre.add(i, p);
+			listaPietre.add(i, p);}
+*/		
+		for ( int i = 0 ; i < n ; i++ ) {
+			Pietra p = new Pietra(listaElementi.get(i));
+			for ( int j = 0 ; j < numeroElementi; j++) {
+				listaPietre.add(p);
+			}
 		}
-
 	}
 
 	/**
@@ -95,6 +116,7 @@ public class Player {
 	public Pietra addPietraToTama() {
 		System.out.println("----------LISTA PIETRE----------");
 		System.out.println("Indice            Nome: "+playerName);
+		System.out.println("Pietre disponibili "+listaPietre.size());
 		ArrayList<Pietra> listaAttuali = new ArrayList<Pietra>();
 		int i = 1;
 		// itero per ogni elemento della lista e controllo che ci sia almeno un elemento
@@ -173,9 +195,9 @@ public class Player {
 	 * @param numElementi
 	 * @return Player creato
 	 */
-	public static Player insertPlayer(int numElementi) {
+	public static Player insertPlayer(int numElementi, ArrayList<Pietra> listaPietra) {
 		String nome = InputDati.leggiStringaNonVuota("Nome giocatore -> ");
-		Player newBorn = new Player(numElementi, nome);
+		Player newBorn = new Player(numElementi, nome, listaPietra);
 		return newBorn;
 	}
 

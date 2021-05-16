@@ -64,6 +64,9 @@ public class Grafo1 {
   //                          System.out.println("------ controllo di i:"+i+" j:"+j);
                             //dati la i e la j controllo che esistano soluzioni nei passaggi successivi tra i e j+1 e i+1 e j
                             //prendo un valore dall'intersezione tra i due insiemi e controllo se esistiono soluzioni nei casi successivi
+                        	if(solutionSet.isEmpty()) {
+                        		throw new ArithmeticException("Errore nella ricerca della soluzione");
+                        	}
                             int compare=rand.nextInt(solutionSet.size());
                             int l=0;
                             for(Integer p:solutionSet)
