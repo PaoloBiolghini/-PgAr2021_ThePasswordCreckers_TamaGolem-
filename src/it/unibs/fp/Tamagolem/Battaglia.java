@@ -156,21 +156,21 @@ public class Battaglia {
 	/**
 	 * Scontro tra due tamagolem, restituisce true se il golem 1 batte il 2
 	 * 
-	 * @param pikachu
-	 * @param eevee
+	 * @param golem1
+	 * @param golem2
 	 * @return
 	 */
-	public static boolean fight(Tamagolem pikachu, Tamagolem eevee) {
+	public static boolean fight(Tamagolem golem1, Tamagolem golem2) {
 		boolean someoneIsDead = false;
 		int i = 0;
-		System.out.println("-*-*-" + pikachu.getID() + " VS " + eevee.getID() + "-*-*-");
+		System.out.println("-*-*-" + golem1.getID() + " VS " + golem2.getID() + "-*-*-");
 		do {
-			i = i % pikachu.getListaPietre().size();
+			i = i % golem1.getListaPietre().size();
 
-			Pietra pikachuBadBoy = pikachu.getListaPietre().get(i);
-			Pietra eeveeBadBeast = eevee.getListaPietre().get(i);
+			Pietra pikachuBadBoy = golem1.getListaPietre().get(i);
+			Pietra eeveeBadBeast = golem2.getListaPietre().get(i);
 
-			displayBattle(pikachu, eevee, pikachuBadBoy, eeveeBadBeast);
+			displayBattle(golem1, golem2, pikachuBadBoy, eeveeBadBeast);
 
 			Map<String, Integer> pikachuGraph = pikachuBadBoy.getElement().getGrafo();
 			Map<String, Integer> eeveeGraph = eeveeBadBeast.getElement().getGrafo();
@@ -179,22 +179,22 @@ public class Battaglia {
 			String eeveeRockElementName = eeveeBadBeast.getNomeElemento();
 
 			if (Battaglia.whichOneIsStronger(pikachuBadBoy, eeveeBadBeast)) {
-				eevee.setVita(eevee.getVita() - pikachuGraph.get(eeveeRockElementName));
-				if (eevee.getVita() < DEAD) {
-					eevee.setVita(DEAD);
+				golem2.setVita(golem2.getVita() - pikachuGraph.get(eeveeRockElementName));
+				if (golem2.getVita() < DEAD) {
+					golem2.setVita(DEAD);
 				}
 			} else {
-				pikachu.setVita(pikachu.getVita() - eeveeGraph.get(pikachuRockElementName));
-				if (pikachu.getVita() < DEAD) {
-					pikachu.setVita(DEAD);
+				golem1.setVita(golem1.getVita() - eeveeGraph.get(pikachuRockElementName));
+				if (golem1.getVita() < DEAD) {
+					golem1.setVita(DEAD);
 				}
 			}
-			if (eevee.getVita() <= DEAD || pikachu.getVita() <= DEAD) {
+			if (golem2.getVita() <= DEAD || golem1.getVita() <= DEAD) {
 				someoneIsDead = true;
 			}
 			i++;
 		} while (!someoneIsDead);
-		if (eevee.getVita() <= DEAD) {
+		if (golem2.getVita() <= DEAD) {
 			return true;
 		} else
 			return false;
