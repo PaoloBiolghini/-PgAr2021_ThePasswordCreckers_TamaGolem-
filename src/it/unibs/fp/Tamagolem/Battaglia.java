@@ -41,9 +41,9 @@ public class Battaglia {
 		 * Usando il metodo fight() otteniamo il tamagolem che ha perso successivamente
 		 * verra tolto dalla lista dei tama disponibile del giocatore che lo ha evocato
 		 */
-		
+		Battaglia.statoBattaglia(A, B);
 		do {
-			Battaglia.statoBattaglia(A, B);
+			
 			boolean loser = Battaglia.fight(A.getListaTamagolem().get(a), B.getListaTamagolem().get(b));
 			/*
 			 * se il golem apparteneva ad A verra rimosso dalla sua lista 
@@ -53,14 +53,16 @@ public class Battaglia {
 			 */
 
 			if (!loser) {
-				System.out.println(A.getPlayerName() + " ha perso un tamagolem");
+				System.out.println(A.getPlayerName() + " ha perso un tamagolem\n");
 				A.getListaTamagolem().remove(a);
+				Battaglia.statoBattaglia(A, B);
 				if (!A.getListaTamagolem().isEmpty()) {
 					Battaglia.evocation(A, A.getListaTamagolem().get(a), B.getListaTamagolem().get(b));
 				}
 			} else {
-				System.out.println(B.getPlayerName() + " ha perso un TamaGolem");
+				System.out.println(B.getPlayerName() + " ha perso un TamaGolem\n");
 				B.getListaTamagolem().remove(b);
+				Battaglia.statoBattaglia(A, B);
 				if (!B.getListaTamagolem().isEmpty()) {
 					Battaglia.evocation(B, B.getListaTamagolem().get(b), A.getListaTamagolem().get(a));
 				}
