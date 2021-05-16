@@ -91,9 +91,7 @@ public class Battaglia {
 	public static void evocation(Player currentPlayer, Tamagolem current, Tamagolem Avv) {
 		ArrayList<Pietra> pietreScelte = new ArrayList<Pietra>();
 		ArrayList<Pietra> AvvLista = Avv.getListaPietre();
-		System.out.println("SCEGLI 3 PIETRE PER IL TAMAGOLEM");
-
-		
+		System.out.println("SCEGLI "+ currentPlayer.getNUMEROPIETRE()+ " PIETRE PER IL TAMAGOLEM");
 
 		if (!AvvLista.isEmpty()) {
 			do {
@@ -104,7 +102,6 @@ public class Battaglia {
 					numPietre++;
 					System.out.println("Numero pietre scelte "+numPietre);
 				} while (numPietre != currentPlayer.getNUMEROPIETRE());
-
 				if (checkListPietre(pietreScelte, AvvLista)) {
 					currentPlayer.riaggiungiPietre(pietreScelte);
 					pietreScelte.clear();

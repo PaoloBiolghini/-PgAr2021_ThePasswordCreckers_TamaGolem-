@@ -23,7 +23,7 @@ public class Main {
 			System.out.println("Numero di elementi in gioco "+ numElements);
 			
 			Grafo1 Equilibrio = new Grafo1(numElements);
-			
+
 			System.out.println("GIOCATORE 1");
 			Player A = Player.insertPlayer(numElements,new ArrayList<Pietra>());
 			System.out.println("GIOCATORE 2");
