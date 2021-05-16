@@ -105,6 +105,7 @@ public class Battaglia {
 					System.out.println("Numero pietre scelte "+numPietre);
 				} while (numPietre != currentPlayer.getNUMEROPIETRE());
 				if (checkListPietre(pietreScelte, AvvLista)) {
+					System.out.println("Le pietre scelte non avranno alcun effetto! Riprova!");
 					currentPlayer.riaggiungiPietre(pietreScelte);
 					pietreScelte.clear();
 				}
@@ -242,7 +243,7 @@ public class Battaglia {
 	 * @param winner
 	 */
 	public static void praiseWinner(Player winner) {
-		System.out.println("Ha vinto " + winner.getPlayerName());
+		System.out.println("\nIL VINCITORE E' " + winner.getPlayerName());
 	}
 
 }

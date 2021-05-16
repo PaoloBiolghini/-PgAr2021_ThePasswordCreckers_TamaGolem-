@@ -16,7 +16,7 @@ public class Main {
 		boolean go = false ;
 		
 		Random rand = new Random();
-		
+	
 		do {
 			
 			int numElements = rand.nextInt(7)+4;
