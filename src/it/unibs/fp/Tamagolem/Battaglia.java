@@ -66,7 +66,7 @@ public class Battaglia {
 				}
 			}
 			/*
-			 * il ciclo termina quando una delle liste dei giocatori è vuota
+			 * il ciclo termina quando una delle liste dei giocatori Ã¨ vuota
 			 */
 			Battaglia.statoBattaglia(A, B);
 		} while (!(A.getListaTamagolem().isEmpty()) && !(B.getListaTamagolem().isEmpty()));
@@ -92,9 +92,9 @@ public class Battaglia {
 		ArrayList<Pietra> pietreScelte = new ArrayList<Pietra>();
 		ArrayList<Pietra> AvvLista = Avv.getListaPietre();
 		System.out.println("SCEGLI 3 PIETRE PER IL TAMAGOLEM");
-//		int uguali = 0 ;
+
 		
-//		currentPlayer.leggiSetPietre();
+
 		if (!AvvLista.isEmpty()) {
 			do {
 				int numPietre = 0;
@@ -200,13 +200,7 @@ public class Battaglia {
 			return false;
 	}
 
-	/*
-	 * public static String stringDecentFormat(String nome) { String primaLettera =
-	 * nome.substring(0, 1).toUpperCase(); String resto = nome.substring(1); return
-	 * primaLettera + resto;
-	 * 
-	 * }
-	 */
+	
 	/**
 	 * Stampa a video I golem con i rispettivi punti vita e le roccie lanciate
 	 * 
